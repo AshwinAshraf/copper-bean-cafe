@@ -2,7 +2,7 @@
 
 A single-page website for a fictional neighbourhood café, built with plain HTML, CSS and JavaScript.
 
-**Live site:** https://YOUR-USERNAME.github.io/copper-bean-cafe/
+**Live site:** https://ashwinashraf.github.io/copper-bean-cafe/
 
 ![Screenshot of the Copper Bean homepage](docs/screenshot.png)
 
