@@ -18,6 +18,17 @@ a,button,select{cursor:pointer}
 .dish{transition:background-color .2s ease}
 .dish:hover{background:#FEF3C7}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #B45309;outline-offset:3px}
+.nav-toggle{display:none}
+.bar-close{display:none}
+@media (max-width: 760px){
+.nav-toggle{display:inline-flex !important}
+.site-nav{display:none !important;flex-basis:100%;flex-direction:column;align-items:stretch !important;gap:0 !important;padding:8px 0 12px;border-top:1px solid #FDE68A}
+.site-nav.open{display:flex !important}
+.site-nav a{padding:14px 4px !important;border-bottom:1px solid #FDE68A}
+.site-nav a.btn{margin-top:12px;border-bottom:0}
+.nav-toggle[aria-expanded="true"] .bar-open{display:none}
+.nav-toggle[aria-expanded="true"] .bar-close{display:inline}
+}
 @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;scroll-behavior:auto !important}}
 </style>
 <style>
@@ -35,14 +46,17 @@ html{scroll-behavior:smooth}
 <body>
 <div style="background: #FFFBEB; color: #78350F; font-family: 'Karla', system-ui, sans-serif; font-size: 17px; line-height: 1.65">
 
-<header style="position: sticky; top: 0; z-index: 10; background: rgba(255, 251, 235, 0.96); border-bottom: 1px solid #FDE68A">
-<div style="max-width: 1120px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px">
+<header style="position: sticky; top: 0; z-index: 10; background: rgba(255, 251, 235, 0.97); border-bottom: 1px solid #FDE68A">
+<div class="nav-bar" style="max-width: 1120px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px">
 <a href="#top" style="font-family: 'Playfair Display SC', Georgia, serif; font-weight: 700; font-size: 24px; color: #78350F; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center">The Copper Bean</a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; font-weight: 600">
+<button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu" style="width: 44px; height: 44px; border: 2px solid #92400E; border-radius: 10px; background: transparent; color: #92400E; align-items: center; justify-content: center; padding: 0">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path class="bar-open" d="M4 7h16M4 12h16M4 17h16"></path><path class="bar-close" d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+<nav id="site-nav" class="site-nav" aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; font-weight: 600">
 <a href="#menu" style="color: #78350F; text-decoration: none; padding: 10px 0">Menu</a>
 <a href="#story" style="color: #78350F; text-decoration: none; padding: 10px 0">Our story</a>
 <a href="#visit" style="color: #78350F; text-decoration: none; padding: 10px 0">Visit</a>
-<a class="btn btn-fill" href="#hire" style="background: #92400E; color: #FFFFFF; text-decoration: none; padding: 10px 18px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Private hire</a>
+<a class="btn btn-fill" href="#hire" style="background: #92400E; color: #FFFFFF; text-decoration: none; padding: 10px 18px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center">Private hire</a>
 </nav>
 </div>
 </header>
@@ -72,17 +86,65 @@ html{scroll-behavior:smooth}
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 40px 56px">
 <div style="display: flex; flex-direction: column; gap: 4px">
 <h3 style="margin: 0 0 12px; font-family: 'Playfair Display SC', Georgia, serif; font-size: 26px; color: #92400E; border-bottom: 2px solid #92400E; padding-bottom: 8px">Coffee</h3>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Flat white</strong><br><span style="color: #57534E; font-size: 15px">Double ristretto, silky milk</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Filter of the week</strong><br><span style="color: #57534E; font-size: 15px">Rotating single origin, ask the team</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Cortado</strong><br><span style="color: #57534E; font-size: 15px">Equal parts espresso and milk</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Iced latte</strong><br><span style="color: #57534E; font-size: 15px">Espresso over ice and cold milk</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Flat white</strong><span style="font-weight: 700; color: #92400E">£3.40</span></div>
+<span style="color: #57534E; font-size: 15px">Double ristretto, silky milk</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Flat white with latte art in a white cup" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Filter of the week</strong><span style="font-weight: 700; color: #92400E">£3.20</span></div>
+<span style="color: #57534E; font-size: 15px">Rotating single origin, ask the team</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1495862433577-132cf20d7902?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Filter coffee being poured into a mug" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Cortado</strong><span style="font-weight: 700; color: #92400E">£3.10</span></div>
+<span style="color: #57534E; font-size: 15px">Equal parts espresso and milk</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1519532059956-a63a37af5deb?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Cortado in a small glass" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Iced latte</strong><span style="font-weight: 700; color: #92400E">£3.80</span></div>
+<span style="color: #57534E; font-size: 15px">Espresso over ice and cold milk</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Iced latte in a tall glass" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 4px">
 <h3 style="margin: 0 0 12px; font-family: 'Playfair Display SC', Georgia, serif; font-size: 26px; color: #92400E; border-bottom: 2px solid #92400E; padding-bottom: 8px">Bakes and brunch</h3>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Cardamom bun</strong><br><span style="color: #57534E; font-size: 15px">Baked fresh every morning</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Sourdough toast</strong><br><span style="color: #57534E; font-size: 15px">Butter and house jam, or avocado and chilli</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Shakshuka</strong><br><span style="color: #57534E; font-size: 15px">Baked eggs, spiced tomato, flatbread</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
-<div class="dish" style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 8px; border-bottom: 1px dashed #FDE68A"><span><strong style="color: #451A03">Seasonal cake</strong><br><span style="color: #57534E; font-size: 15px">Ask what's on the counter today</span></span><span style="font-weight: 700; color: #451A03">£[ ]</span></div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Cardamom bun</strong><span style="font-weight: 700; color: #92400E">£3.50</span></div>
+<span style="color: #57534E; font-size: 15px">Baked fresh every morning</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Freshly baked buns" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Sourdough toast</strong><span style="font-weight: 700; color: #92400E">£5.50</span></div>
+<span style="color: #57534E; font-size: 15px">Butter and house jam, or avocado and chilli</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1612827788868-c8632040ab64?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Sourdough toast on a plate" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Shakshuka</strong><span style="font-weight: 700; color: #92400E">£9.50</span></div>
+<span style="color: #57534E; font-size: 15px">Baked eggs, spiced tomato, flatbread</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1697546307745-c05002aa1c1e?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Shakshuka in a pan" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
+<div class="dish" style="display: flex; align-items: center; gap: 16px; padding: 12px 8px; border-bottom: 1px dashed #FDE68A">
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px"><strong style="color: #451A03; font-size: 18px">Seasonal cake</strong><span style="font-weight: 700; color: #92400E">£4.20</span></div>
+<span style="color: #57534E; font-size: 15px">Ask what's on the counter today</span>
+</div>
+<img class="thumb" src="https://images.unsplash.com/photo-1517427294546-5aa121f68e8a?auto=format&amp;fit=crop&amp;w=200&amp;h=200&amp;q=70" alt="Slice of cake on a plate" width="76" height="76" loading="lazy" decoding="async" style="flex: none; width: 76px; height: 76px; border-radius: 14px; background: #FEF3C7; border: 1px solid #FDE68A; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #B45309; font-size: 12px; text-align: center">
+</div>
 </div>
 </div>
 <p style="margin: 0; font-size: 15px; color: #57534E">Allergen information is available for every item. Please ask a member of the team before ordering.</p>
@@ -161,6 +223,14 @@ html{scroll-behavior:smooth}
 
 </div>
 <script>
+(function(){
+  var t=document.querySelector('.nav-toggle'),n=document.getElementById('site-nav');
+  if(t&&n){
+    t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});
+    n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');});});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('open')){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.focus();}});
+  }
+})();
 (function(){
   document.querySelectorAll('form.enquiry').forEach(function(form){
     var summary=document.createElement('div');
